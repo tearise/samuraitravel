@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<div class="th:replace=~{fragment  :: meta}"></div>
+		
+		<div class="th:replace=~{fragment :: styles}"></div>
+	</head>
+</html>
