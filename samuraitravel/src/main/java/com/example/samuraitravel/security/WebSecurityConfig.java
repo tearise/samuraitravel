@@ -18,7 +18,7 @@ public class WebSecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 		http
 		.authorizeHttpRequests((requests) -> requests
-			.requestMatchers("/css/**", "/images/**", "/js/**", "/storage/**", "/","/signup/**").permitAll() //	全てのユーザーにアクセスを許可するURL
+			.requestMatchers("/css/**", "/images/**", "/js/**", "/storage/**", "/","/signup/**","/houses","/houses/{id}","/stripe/webhook").permitAll() //	全てのユーザーにアクセスを許可するURL
 			.requestMatchers("/admin/**").hasRole("ADMIN") //管理者のみアクセスを許可するURL
 			.anyRequest().authenticated() 				   //上記以外のＵＲＬはログインが必要（会員または管理者どちらでもＯＫ）
 				)
@@ -32,7 +32,8 @@ public class WebSecurityConfig {
 		.logout((logout) -> logout
 				.logoutSuccessUrl("/?loggedOut")		//ログアウト時のリダイレクト先URL
 				.permitAll()
-				);
+				)
+				.csrf().ignoringRequestMatchers("/stripe/webhook");
 		
 		return http.build();
 		
